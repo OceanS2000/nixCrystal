@@ -74,6 +74,7 @@
   ];
 
   programs.zsh.enable = true;
+  programs.hyprland.enable = true;
 
   environment.variables = {
     EDITOR = "vim";
