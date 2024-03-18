@@ -57,8 +57,7 @@
   sound.enable = false;
   hardware.pulseaudio.enable = false;
 
-  # Disable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = false;
+  services.spice-vdagentd.enable = true;
 
   users.users.ocean = {
     isNormalUser = true;
@@ -74,7 +73,19 @@
   ];
 
   programs.zsh.enable = true;
-  programs.hyprland.enable = true;
+  programs.sway = {
+    enable = true;
+    extraPackages = with pkgs; [
+      swaylock swayidle wofi
+    ];
+  };
+
+  environment.etc."sway/config.d/site.conf".text = "
+bindsym $mod+Return exec kitty
+bindsym $mod+d exec wofi
+
+input * natural_scroll enabled
+";
 
   environment.variables = {
     EDITOR = "vim";
